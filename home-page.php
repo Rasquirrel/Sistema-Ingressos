@@ -1,3 +1,8 @@
+<?php
+include 'testasessao.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +15,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -96,10 +102,19 @@
           </li>
 
           <li class="nav-item">
-            <a href="users-page.html" class="nav-link">
+            <a href="users-page.php" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Usuários ADM
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="sair.php" class="nav-link">
+              <i class="nav-icon fas fa-arrow-right-from-bracket"></i>
+              <p>
+                Sair
               </p>
             </a>
           </li>

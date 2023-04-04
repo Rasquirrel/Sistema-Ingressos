@@ -8,14 +8,14 @@ $senha = $_POST ['senha'];
 
 
 //criando uma consulta
-$sql = "select * from tbusu where email='$email' and senha='$senha'";
+$sql = "select * from tbusua where email='$email' and senha='$senha'";
 $consulta = $conexao->query($sql);
 if ($consulta->num_rows > 0){
     session_start();
     $_SESSION['login'] = 'ok';
     $linha=$consulta->fetch_array(MYSQLI_ASSOC);
     $_SESSION['usuario'] = $linha['codusu'];
-    header('Location: principal.php?login=ok');
+    header('Location: home-page.php?login=ok');
    // echo 'Usuário Encontrado';
 }else{
     header('Location: index.php?login=erro');
