@@ -33,7 +33,7 @@ include 'testasessao.php';
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <!--jquery-->
-  <script src="build/js/jquery.js">
+  <script src="build/js/jquery.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -152,7 +152,7 @@ include 'testasessao.php';
               if(isset($_GET['delete'])) {
                 if(($_GET['delete'])== 'ok'){
                   echo '<script>
-                     
+                     alert("usuario apagado");
                   </script>';
                 }
               }
