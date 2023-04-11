@@ -4,7 +4,7 @@ include 'testasessao.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,17 +95,30 @@ include 'testasessao.php';
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
+               <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="home-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>';
+          }else{
+             echo'
             <a href="home-page.php" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
               </p>
-            </a>
+            </a>';
+          }
+            ?>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fa-solid fa-address-book"></i>
               <p>
                 Usuários ADM
               </p>
@@ -133,9 +146,20 @@ include 'testasessao.php';
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
+          <div class="col-sm-10">
             <h1 class="m-0">Usuários Administradores</h1>
           </div><!-- /.col -->
+          <?php
+            if(isset($_GET['adm'])){
+              echo'
+              <a href="addusua.php?adm=S" class="btn btn-success col-2">
+                <i class="nav-icon fa-solid fa-person-circle-plus"></i>&nbsp;&nbsp;
+                     Criar Usuário
+              </a>';
+            }else{
+
+            }
+            ?>
           <!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -151,12 +175,14 @@ include 'testasessao.php';
           <?php 
               if(isset($_GET['delete'])) {
                 if(($_GET['delete'])== 'ok'){
-                  echo '<script>
-                     alert("usuario apagado");
-                  </script>';
+                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>Sucesso</strong> usuário excluido!
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>';
                 }
               }
-
               if(isset($_GET['delete'])) {
                 if(($_GET['delete'])== 'erro'){
                   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -184,17 +210,30 @@ include 'testasessao.php';
                   $consulta = $conexao->query($sql);
                   if($consulta){
                     if ($consulta->num_rows > 0){
-                      while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
-                            echo' <tr>
-                            <td>'.$linha['codusu'].'</td>
-                            <td>'.$linha['email'].'</td>
-                            <td>
-                                <a href="altusu.php?id='.$linha['codusu'].'" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
-                                <a href="deleteusu.php?id='.$linha['codusu'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
-                            </td>
-                          </tr>';
-                        }
-                  }
+                      if(isset($_GET['adm'])){
+                              while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
+                                echo' <tr>
+                                <td>'.$linha['codusu'].'</td>
+                                <td>'.$linha['email'].'</td>
+                                <td>
+                                    <a href="altusu.php?id='.$linha['codusu'].'&adm=S" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
+                                    <a href="deleteusu.php?id='.$linha['codusu'].'&adm=S" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
+                                </td>
+                              </tr>';
+                            }
+                      }else{
+                              while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
+                                echo' <tr>
+                                <td>'.$linha['codusu'].'</td>
+                                <td>'.$linha['email'].'</td>
+                                <td>
+                                    <a href="altusu.php?id='.$linha['codusu'].'" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
+                                    <a href="deleteusu.php?id='.$linha['codusu'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
+                                </td>
+                              </tr>';
+                            }
+                      }
+                    }
                 }
               ?>
               </tbody>

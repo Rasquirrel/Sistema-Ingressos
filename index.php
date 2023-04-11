@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ibento For You</title>
+  <link rel="shortcut icon" href="favicon.png" type="image/png">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,7 +20,8 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="#" class="h1"><b>Ibento</b> For You</a>
+      <img src="favicon.png" alt="loho" style="width:50px;height:50px;">
+      <a href="#" class="h1"><b>&nbsp;Ibento</b> For You</a>
     </div>
     <div class="card-body">
       <p>

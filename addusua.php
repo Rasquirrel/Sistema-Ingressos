@@ -4,7 +4,7 @@ include 'testasessao.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +32,8 @@ include 'testasessao.php';
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!--jquery-->
+  <script src="build/js/jquery.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -92,8 +94,8 @@ include 'testasessao.php';
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
+               <li class="nav-item">
+            <a href="home-page.php?adm=S" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
@@ -102,25 +104,12 @@ include 'testasessao.php';
           </li>
 
           <li class="nav-item">
-            <?php
-            if(isset($_GET['adm'])){
-            echo'
-            <a href="users-page.php?adm=S" class="nav-link">
+            <a href="users-page.php?adm=S" class="nav-link active">
               <i class="nav-icon fa-solid fa-address-book"></i>
               <p>
                 Usuários ADM
               </p>
-            </a>';
-          }else{
-             echo'
-            <a href="users-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-address-book"></i>
-              <p>
-                Usuários ADM
-              </p>
-            </a>';
-          }
-            ?>
+            </a>
           </li>
 
           <li class="nav-item">
@@ -144,8 +133,8 @@ include 'testasessao.php';
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Home</h1>
+          <div class="col-sm-10">
+            <h1 class="m-0">Criação de Usuários</h1>
           </div><!-- /.col -->
           <!-- /.col -->
         </div><!-- /.row -->
@@ -155,26 +144,40 @@ include 'testasessao.php';
 
     <!-- Main content -->
     <section class="content">
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title"><strong>Seja Bem-Vindo Ao Sistema!</strong></h2>
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-        </div>
-        <div class="card-body">
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, culpa!</p>
-        </div>
-        <div class="card-footer">
-          Sistema de Ingressos
-        </div>
+    <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Quick Example</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Senha</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                  <label for="exampleInputPassword1">Repetir Senha</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  </div>
+                </div>
+                <!-- /.card-body -->
 
-      </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+      
     </section>
     <!-- /.content -->
   </div>
@@ -229,5 +232,39 @@ include 'testasessao.php';
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+<script src="plugins/pdfmake/pdfmake.min.js"></script>
+<script src="plugins/pdfmake/vfs_fonts.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+
 </body>
 </html>
