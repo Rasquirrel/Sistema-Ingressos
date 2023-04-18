@@ -1,0 +1,148 @@
+<!doctype>
+<html>
+<head>
+  <title>VARIOS_CHANGES</title>
+   
+   
+   <style>
+     #controles
+	 {
+	 
+	 border:2px solid;
+	 height: 50px;
+     padding:12px; 
+	 width: 80%; 
+	 border-radius:10px;
+	 box-shadow:2px 2px 10px #CCC;
+	 margin-top:70px;
+	 background:white;
+     
+	 }
+
+     #imagem
+	 {
+	 
+	 border:2px solid;
+	 
+	 padding:12px; 
+	 width: 80%; 
+	 border-radius:10px;
+	 box-shadow:2px 2px 10px #CCC;
+	 margin-top:5px;
+	 background:white;
+	 }
+	 
+	
+	 
+   </style>
+   
+</head>
+<body>
+  
+  
+
+  <div id="quadro" style="border:2px solid; margin:20px;padding:12px">
+			<H1>...FINALIZANDO VENDA...</H1>
+            <label> TOTAL R$ </label>
+			    <input type="text" id="total" value="500" size="12"><br>
+			  <br>
+			  Forma de Pagamento
+			  <select id="forma">
+			     <option id="1"> A vista  </option>
+			     <option id="2"> Credito 10% </option>
+			     <option id="3"> Debito  5%</option>
+			    </select> <br><br>
+				
+			  <label> desconto </label>
+			  <input type="text" id="desconto" size="10" value="10">%<br>
+			  <br>
+			  
+			  <label> Total da Pagar R$</label>
+			  <input type="text" id="pagar" size="12" value="0"><br><br>
+			  <input type="button" id="calc" value="Calcular">
+			  
+  </div>
+  
+  
+   <br> <br>
+  <div id="quadro" style="border:2px solid; margin:20px; padding:12px">
+  <H2> ONCHAGE E ONCLICK </H2>
+  <p id="texto">HOJE É DOMINGO DO PÉ DO CACHIMBO</p>
+		    
+			  <select id="cor">
+				   <option> Azul  </option>
+				   <option>  Vermelho </option>
+				   <option>  Verde </option>
+			  </select>
+
+			  <select id="font">
+				<option> arial  </option>
+				<option> Times new roman  </option>
+				 <option> calibri  </option>
+				 <option>  san-serif </option>
+				
+				</select>
+
+				<select id="tamanho">
+					<option> 14  </option>
+					<option> 18 </option>
+					 <option> 22  </option>
+					 <option>  26 </option>
+					
+					</select>
+				
+			  <button id="n">N</button>
+			  <button id="i">I</button>
+			  <button id="s">S</button>
+		 
+		
+  </div>
+  
+  <div id="quadro" style="border:2px solid; margin:20px; padding:12px">
+  
+			<div id="controles" >
+    <table>
+        <tr>
+            <td>
+                TAMANHO<input type="range" id="tam" min="100" max="1000">
+                <p id="tamanho">0</p>
+            </td>
+            <td>
+              ARREDONDAMENTO
+              <input type="range" id="arr" min="10" max="100">
+                <p id="redondo">0</p>
+            </td>
+            <td>
+
+                OPACIDADE
+                <input type="range" id="opac" min="10" max="100">
+                  <p id="opacidade">0</p>
+            </td>
+        </tr>
+    </table>    
+          
+  </div>
+
+  <div id="imagem" >
+    <img src="mulher.jpg" id="mulher" width="350px">
+          
+  </div>  
+		 
+		
+  </div>
+  
+  
+    <script src="../js/jquery3.js"></script>    
+   <script>
+   
+      $(function(){
+	    alert('Ola mundo')
+		
+		});//end final
+	  
+   </script>
+   
+ 
+ 
+</body>
+</html>

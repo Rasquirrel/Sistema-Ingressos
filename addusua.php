@@ -132,48 +132,73 @@ include 'testasessao.php';
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-10">
-            <h1 class="m-0">Criação de Usuários</h1>
-          </div><!-- /.col -->
-          <!-- /.col -->
-        </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
+    <?php 
+        if(isset($_GET['insert'])) {
+          if(($_GET['insert'])== 'ok'){
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                 <strong>Insert</strong> feito com sucesso!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+          }
+          if(($_GET['insert'])== 'erro'){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Atenção</strong> Erro interno no servidor.
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+       </button>
+        </div>';
+          }
+          if(($_GET['insert'])== 'Senhaerro'){
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Atenção</strong> As senhas estão diferentes!                                                                        
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+       </button>
+        </div>';
+          }
+        }
+      ?>
     <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
+                <h3 class="card-title">Criação de Usuários &nbsp; <i class="fa-solid fa-person-circle-plus"></i></h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form action="salvausua.php" method="post">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="insira o endereço de email" name="email">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Senha</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" required class="form-control" id="senha1" placeholder="insira a senha" name="senha1">
                   </div>
                   <div class="form-group">
                   <label for="exampleInputPassword1">Repetir Senha</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" required class="form-control" id="senha2" placeholder="repetir senha" name="senha2">
                     
                   </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
+      
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <input type="text" hidden class="form-control" id="adm" name="adm" value="adm">';
+          }
+            ?>
+                  <button type="submit" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Criar</button>
                 </div>
               </form>
             </div>
