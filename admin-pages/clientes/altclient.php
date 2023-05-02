@@ -4,7 +4,7 @@ include '../banco/banco.php';
   // recebendo id do usuário
     $id = $_GET['id'];
   //criando consulta
-    $sql = "select * from tbusua where codusu = '$id'";
+    $sql = "select * from tbcliente where codcli = '$id'";
   //realizando busca
     $busca = $conexao->query($sql);
   //convertendo resultado em array
@@ -103,32 +103,70 @@ include '../banco/banco.php';
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
+               <?php
+            if(isset($_GET['adm'])){
+            echo'
             <a href="../home-page.php?adm=S" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
               </p>
-            </a>
+            </a>';
+          }else{
+             echo'
+            <a href="../home-page.php" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>';
+          }
+            ?>
           </li>
 
           <li class="nav-item">
-            <a href="users-page.php?adm=S" class="nav-link active">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="../usuarios/users-page.php?adm=S" class="nav-link">
               <i class="nav-icon fa-solid fa-address-book"></i>
               <p>
                 Usuários ADM
               </p>
-            </a>
+            </a>';
+          }else{
+             echo'
+            <a href="../usuarios/users-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-address-book"></i>
+              <p>
+                Usuários ADM
+              </p>
+            </a>';
+          }
+            ?>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Clientes
-              </p>
-            </a>
+            <?php
+             if(isset($_GET['adm'])){
+              echo
+              '<a href="client-page.php?adm=S" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Clientes
+                </p>
+              </a>';
+             }else{
+              echo'
+              <a href="client-page.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Clientes
+                </p>
+              </a>';
+             }
+            ?>
           </li>
-
           <li class="nav-item">
             <a href="../sair.php" class="nav-link">
               <i class="nav-icon fas fa-arrow-right-from-bracket"></i>
@@ -157,19 +195,35 @@ include '../banco/banco.php';
     <section class="content">
     <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Alteração de Usuários &nbsp; <i class="fa-solid fa-person-circle-plus"></i></h3>
+                <h3 class="card-title">Alteração de Clientes &nbsp; <i class="fa-solid fa-person-circle-plus"></i></h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form action="alterausua.php" method="post">
                 <div class="card-body">
                   <div class="form-group">
-                  <label for="email">Seu código</label>
-                  <input type="text" class="form-control col-8 mb-3" readonly name="id" id="id" value="<?php echo $linha['codusu']?>">
-                    <label for="email">Email Antigo</label>
-                    <input type="email" class="form-control" id="email" readonly name="email" value="<?php echo $linha['email']?>">
+                    <label for="email">Seu código</label>
+                    <input type="text" class="form-control col-8 mb-3" readonly name="id" id="id" value="<?php echo $linha['codcli']?>">
+                    <label for="nome">Nome Antigo</label>
+                    <input type="text" readonly class="form-control" id="nome" name="nome" value="<?php echo $linha['nome']?>">
+                    <label for="nome_novo">Nome Novo</label>
+                    <input type="text" class="form-control" id="nome_novo" placeholder="insira o novo nome" name="nome_novo">
                   </div>
                   <div class="form-group">
+                    <label for="cpf">CPF Antigo</label>
+                    <input type="text" class="form-control" id="cpf" readonly name="cpf" value="<?php echo $linha['cpf']?>">
+                    <label for="email_novo">CPF Novo</label>
+                    <input type="text" class="form-control" id="cpf_novo" placeholder="insira o novo CPF" name="cpf_novo">
+                  </div>
+                  <div class="form-group">
+                    <label for="fone">Fone Antigo</label>
+                    <input type="text" class="form-control" id="fone" readonly name="fone" value="<?php echo $linha['fone']?>">
+                    <label for="email_novo">Fone Novo</label>
+                    <input type="text" class="form-control" id="fone_novo" placeholder="insira o novo fone" name="fone_novo">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email Antigo</label>
+                    <input type="email" class="form-control" id="email" readonly name="email" value="<?php echo $linha['email']?>">
                     <label for="email_novo">Email Novo</label>
                     <input type="email" class="form-control" id="email_novo" placeholder="insira o novo endereço de email" name="email_novo">
                   </div>

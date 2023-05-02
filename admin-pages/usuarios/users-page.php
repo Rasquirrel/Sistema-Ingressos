@@ -126,6 +126,29 @@ include 'testasessao.php';
           </li>
 
           <li class="nav-item">
+            <?php
+             if(isset($_GET['adm'])){
+              echo'
+              <a href="../clientes/client-page.php?adm=S" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Clientes
+                </p>
+              </a>';
+             }else{
+              echo'
+              <a href="../clientes/client-page.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Clientes
+                </p>
+              </a>';
+             }
+            
+            ?>
+          </li>
+
+          <li class="nav-item">
             <a href="../sair.php" class="nav-link">
               <i class="nav-icon fas fa-arrow-right-from-bracket"></i>
               <p>

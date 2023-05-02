@@ -54,7 +54,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link btn btn-outline-secondary m-2"  href="#">
+        <a class="nav-link btn btn-outline-secondary m-2"  href="admin-pages/index-admins.php">
         <i class="fas fa-toolbox"></i> Entrar como Admin
         </a>
       </li>

@@ -1,14 +1,6 @@
 <?php
 include 'testasessao.php';
-include '../banco/banco.php';
-  // recebendo id do usuário
-    $id = $_GET['id'];
-  //criando consulta
-    $sql = "select * from tbusua where codusu = '$id'";
-  //realizando busca
-    $busca = $conexao->query($sql);
-  //convertendo resultado em array
-    $linha = $busca->fetch_array(MYSQLI_ASSOC);  
+
 ?>
 
 <!DOCTYPE html>
@@ -103,32 +95,70 @@ include '../banco/banco.php';
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
+               <?php
+            if(isset($_GET['adm'])){
+            echo'
             <a href="../home-page.php?adm=S" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
               </p>
-            </a>
+            </a>';
+          }else{
+             echo'
+            <a href="../home-page.php" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>';
+          }
+            ?>
           </li>
 
           <li class="nav-item">
-            <a href="users-page.php?adm=S" class="nav-link active">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="../usuarios/users-page.php?adm=S" class="nav-link">
               <i class="nav-icon fa-solid fa-address-book"></i>
               <p>
                 Usuários ADM
               </p>
-            </a>
+            </a>';
+          }else{
+             echo'
+            <a href="../usuarios/users-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-address-book"></i>
+              <p>
+                Usuários ADM
+              </p>
+            </a>';
+          }
+            ?>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Clientes
-              </p>
-            </a>
+            <?php
+             if(isset($_GET['adm'])){
+              echo
+              '<a href="client-page.php?adm=S" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Clientes
+                </p>
+              </a>';
+             }else{
+              echo'
+              <a href="client-page.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Clientes
+                </p>
+              </a>';
+             }
+            ?>
           </li>
-
           <li class="nav-item">
             <a href="../sair.php" class="nav-link">
               <i class="nav-icon fas fa-arrow-right-from-bracket"></i>
@@ -155,43 +185,78 @@ include '../banco/banco.php';
 
     <!-- Main content -->
     <section class="content">
+    <?php 
+        if(isset($_GET['insert'])) {
+          if(($_GET['insert'])== 'ok'){
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                 <strong>Insert</strong> feito com sucesso!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+          }
+          if(($_GET['insert'])== 'erro'){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Atenção</strong> Erro interno no servidor.
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+       </button>
+        </div>';
+          }
+          if(($_GET['insert'])== 'Senhaerro'){
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Atenção</strong> As senhas estão diferentes!                                                                        
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+       </button>
+        </div>';
+          }
+        }
+      ?>
     <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Alteração de Usuários &nbsp; <i class="fa-solid fa-person-circle-plus"></i></h3>
+                <h3 class="card-title">Criação de Clientes &nbsp; <i class="fa-solid fa-person-circle-plus"></i></h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="alterausua.php" method="post">
+              <form action="salvaclient.php" method="post">
                 <div class="card-body">
                   <div class="form-group">
-                  <label for="email">Seu código</label>
-                  <input type="text" class="form-control col-8 mb-3" readonly name="id" id="id" value="<?php echo $linha['codusu']?>">
-                    <label for="email">Email Antigo</label>
-                    <input type="email" class="form-control" id="email" readonly name="email" value="<?php echo $linha['email']?>">
+                    <label for="nome">Nome</label>
+                    <input type="text"  required class="form-control" id="nome" placeholder="Insira o nome" name="nome">
                   </div>
                   <div class="form-group">
-                    <label for="email_novo">Email Novo</label>
-                    <input type="email" class="form-control" id="email_novo" placeholder="insira o novo endereço de email" name="email_novo">
+                    <label for="cpf">CPF</label>
+                    <input type="text" required class="form-control" id="cpf" placeholder="insira o CPF(sem pontos e hifens)" name="cpf">
                   </div>
                   <div class="form-group">
-                    <label for="senha1">Senha Antiga</label>
-                    <input type="text" class="form-control" id="senha1" readonly name="senha1" value="<?php echo $linha['senha']?>">
+                    <label for="fone">Fone</label>
+                    <input type="text" required class="form-control" id="fone" placeholder="Insira o telefone" name="fone">
                   </div>
                   <div class="form-group">
-                  <label for="senha2">Senha Nova</label>
-                    <input type="text" class="form-control" id="senha2" placeholder="nova senha" name="senha2">
-                    
+                    <label for="email">E-Mail</label>
+                    <input type="email" required class="form-control" id="email" placeholder="Insira o email" name="email">
                   </div>
-                  <?php
-                        if(isset($_GET['adm'])){
-                        echo'<input type="text" hidden class="form-control" id="adm" name="adm" value="adm">';
-                        }
-                  ?>
+                  <div class="form-group">
+                    <label for="senha1">Senha</label>
+                    <input type="password" required class="form-control" id="senha1" placeholder="Insira a senha" name="senha1">
+                  </div>
+                  <div class="form-group">
+                    <label for="senha2">Repetir Senha</label>
+                    <input type="password" required class="form-control" id="senha2" placeholder="Repita a senha" name="senha2">
+                  </div>
+      
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Alterar</button>
+                <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <input type="text" hidden class="form-control" id="adm" name="adm" value="adm">';
+          }
+            ?>
+                  <button type="submit" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Criar</button>
                 </div>
               </form>
             </div>

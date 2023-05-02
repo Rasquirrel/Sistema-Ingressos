@@ -1,18 +1,10 @@
 <?php
 include 'testasessao.php';
-include '../banco/banco.php';
-  // recebendo id do usuário
-    $id = $_GET['id'];
-  //criando consulta
-    $sql = "select * from tbusua where codusu = '$id'";
-  //realizando busca
-    $busca = $conexao->query($sql);
-  //convertendo resultado em array
-    $linha = $busca->fetch_array(MYSQLI_ASSOC);  
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -103,21 +95,47 @@ include '../banco/banco.php';
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
+               <?php
+            if(isset($_GET['adm'])){
+            echo'
             <a href="../home-page.php?adm=S" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
               </p>
-            </a>
+            </a>';
+          }else{
+             echo'
+            <a href="../home-page.php" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>';
+          }
+            ?>
           </li>
 
           <li class="nav-item">
-            <a href="users-page.php?adm=S" class="nav-link active">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="../usuarios/users-page.php?adm=S" class="nav-link">
               <i class="nav-icon fa-solid fa-address-book"></i>
               <p>
                 Usuários ADM
               </p>
-            </a>
+            </a>';
+          }else{
+             echo'
+            <a href="../usuarios/users-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-address-book"></i>
+              <p>
+                Usuários ADM
+              </p>
+            </a>';
+          }
+            ?>
           </li>
 
           <li class="nav-item">
@@ -149,53 +167,137 @@ include '../banco/banco.php';
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-10">
+            <h1 class="m-0">Clientes</h1>
+          </div><!-- /.col -->
+          
+          <?php
+            if(isset($_GET['adm'])){
+              echo'
+              <a href="addclient.php?adm=S" class="btn btn-success col-2">
+                <i class="nav-icon fa-solid fa-person-circle-plus"></i>&nbsp;&nbsp;
+                     Criar Cliente
+              </a>';
+            }else{
+              echo'
+              <a href="addclient.php?" class="btn btn-success col-2">
+                <i class="nav-icon fa-solid fa-person-circle-plus"></i>&nbsp;&nbsp;
+                     Criar Cliente
+              </a>';
+            }
+            ?>
+           
+          <!-- /.col -->
+        </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
-    <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Alteração de Usuários &nbsp; <i class="fa-solid fa-person-circle-plus"></i></h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form action="alterausua.php" method="post">
-                <div class="card-body">
-                  <div class="form-group">
-                  <label for="email">Seu código</label>
-                  <input type="text" class="form-control col-8 mb-3" readonly name="id" id="id" value="<?php echo $linha['codusu']?>">
-                    <label for="email">Email Antigo</label>
-                    <input type="email" class="form-control" id="email" readonly name="email" value="<?php echo $linha['email']?>">
-                  </div>
-                  <div class="form-group">
-                    <label for="email_novo">Email Novo</label>
-                    <input type="email" class="form-control" id="email_novo" placeholder="insira o novo endereço de email" name="email_novo">
-                  </div>
-                  <div class="form-group">
-                    <label for="senha1">Senha Antiga</label>
-                    <input type="text" class="form-control" id="senha1" readonly name="senha1" value="<?php echo $linha['senha']?>">
-                  </div>
-                  <div class="form-group">
-                  <label for="senha2">Senha Nova</label>
-                    <input type="text" class="form-control" id="senha2" placeholder="nova senha" name="senha2">
-                    
-                  </div>
-                  <?php
-                        if(isset($_GET['adm'])){
-                        echo'<input type="text" hidden class="form-control" id="adm" name="adm" value="adm">';
-                        }
-                  ?>
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Alterar</button>
-                </div>
-              </form>
-            </div>
-      
+      <div class="container-fluid">
+        <div class="card">
+        
+          <!-- /.card-header -->
+          <?php 
+              if(isset($_GET['delete'])) {
+                if(($_GET['delete'])== 'ok'){
+                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>Sucesso</strong> Cliente excluido!
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>';
+                }
+              }
+              if(isset($_GET['delete'])) {
+                if(($_GET['delete'])== 'erro'){
+                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Atenção</strong> Erro, cliente não excluido!
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>';
+                }
+              }
+              if(isset($_GET['update'])) {
+                if(($_GET['update'])== 'ok'){
+                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>Sucesso</strong> cliente atualizado!
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>';
+                }
+              }
+              if(isset($_GET['update'])) {
+                if(($_GET['update'])== 'erro'){
+                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>Atenção</strong> Erro, cliente não atualizado!
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>';
+                }
+              }
+            ?>
+          <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Fone</th>
+                <th>E-Mail</th>
+                <th>Senha</th>
+                <th>Opções</th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php
+                  include '../banco/banco.php';
+                  $sql = "select * from tbcliente";
+                  $consulta = $conexao->query($sql);
+                  if($consulta){
+                    if ($consulta->num_rows > 0){
+                
+                        while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
+                          echo' <tr>
+                          <td>'.$linha['codcli'].'</td>
+                          <td>'.$linha['nome'].'</td>
+                          <td>'.$linha['cpf'].'</td>
+                          <td>'.$linha['fone'].'</td>
+                          <td>'.$linha['email'].'</td>
+                          <td>'.$linha['senha'].'</td>
+                          <td>
+                              <a href="altclient.php?id='.$linha['codcli'].'" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
+                              <a href="deleteclient.php?id='.$linha['codcli'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
+                          </td>
+                        </tr>';
+                      }
+                      
+                    }
+                }
+              ?>
+              </tbody>
+              <tfoot>
+              <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Fone</th>
+                <th>E-Mail</th>
+                <th>Senha</th>
+                <th>Opções</th>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>

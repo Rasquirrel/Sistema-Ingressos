@@ -49,7 +49,7 @@ include 'testasessao.php';
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+        <a class="nav-link" data-widget="navbar-search" href="" role="button">
           <i class="fas fa-search"></i>
         </a>
         <div class="navbar-search-block">
@@ -69,7 +69,7 @@ include 'testasessao.php';
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
+        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="teste" role="button">
           <i class="fas fa-th-large"></i>
         </a>
       </li>
@@ -117,6 +117,28 @@ include 'testasessao.php';
               <i class="nav-icon fa-solid fa-address-book"></i>
               <p>
                 Usuários ADM
+              </p>
+            </a>';
+          }
+            ?>
+          </li>
+
+          <li class="nav-item">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="clientes/client-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-user"></i>
+              <p>
+                Clientes
+              </p>
+            </a>';
+          }else{
+             echo'
+            <a href="clientes/client-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-user"></i>
+              <p>
+                Clientes
               </p>
             </a>';
           }
