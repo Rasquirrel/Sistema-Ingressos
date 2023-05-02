@@ -3,11 +3,13 @@ include('../banco/banco.php');
 
 $a = $_POST['adm'];
 $id = $_POST['id'];
-$nome = $_POST['nome']
+$nome = $_POST['nome_novo'];
+$cpf = $_POST['cpf_novo'];
+$fone = $_POST['fone_novo'];
 $email = $_POST['email_novo'];
 $senha = $_POST['senha2'];
     // Verificar a ordem dos valores a seguir
-$sql = "update tbclient set email = '$email', senha = '$senha'
+$sql = "update tbcliente set nome = '$nome', cpf = '$cpf', fone = '$fone', email = '$email', senha = '$senha'
           where codcli = '$id'";
 
 $update = $conexao->query($sql);

@@ -199,7 +199,7 @@ include '../banco/banco.php';
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="alterclient.php" method="post">
+              <form action="alteraclient.php" method="post">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="email">Seu código</label>
