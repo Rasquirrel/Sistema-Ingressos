@@ -54,9 +54,13 @@
         }
       ?>
       </p>
-      <p class="login-box-msg">Faça login para iniciar sua sessão</p>
 
+      <div class="row">
+        <a class="btn btn-info col-3" href="../index.php">Voltar</a>
+        <p class="login-box-msg col-9">Faça login para iniciar sua sessão</p>
+      </div>
       <form action="login.php" method="POST">
+
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="E-mail" name="email">
           <div class="input-group-append">
