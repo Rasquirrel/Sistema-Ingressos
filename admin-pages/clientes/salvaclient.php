@@ -8,12 +8,14 @@ $fone = $_POST['fone'];
 $email = $_POST['email'];
 $senha = $_POST['senha1'];
 $senha2 = $_POST['senha2'];
+$data = $_POST['data'];
     // Verificar a ordem dos valores a seguir
     if($a=='adm'){
                 if($senha==$senha2){
 
-                $sql = "insert into tbcliente values(null, '$nome', '$cpf', '$fone', '$email','$senha')";
+                $sql = "insert into tbcliente values(null, '$nome', '$cpf', '$fone', '$email','$senha','$data')";
                 $insert = $conexao->query($sql);
+                
 
                 if($insert==true){
                     header('Location: addclient.php?insert=ok&adm=S');
@@ -26,7 +28,7 @@ $senha2 = $_POST['senha2'];
   }else{
     if($senha==$senha2){
 
-      $sql = "insert into tbcliente values(null, '$nome', '$cpf', '$fone', '$email','$senha')";
+      $sql = "insert into tbcliente values(null, '$nome', '$cpf', '$fone', '$email','$senha','$data')";
       $insert = $conexao->query($sql);
 
             if($insert==true)

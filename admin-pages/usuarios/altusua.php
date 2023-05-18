@@ -8,7 +8,7 @@ include '../banco/banco.php';
   //realizando busca
     $busca = $conexao->query($sql);
   //convertendo resultado em array
-    $linha = $busca->fetch_array(MYSQLI_ASSOC);  
+    $linha = $busca->fetch_array(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -128,6 +128,49 @@ include '../banco/banco.php';
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="eventos/event-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar"></i>
+              <p>
+                Eventos
+              </p>
+            </a>';
+          }else{
+             echo'
+            <a href="eventos/event-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar"></i>
+              <p>
+                Eventos
+              </p>
+            </a>';
+          }
+            ?>
+          </li>
+
+          <li class="nav-item">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-ticket-alt"></i>
+              <p>
+                Ingressos
+              </p>
+            </a>';
+          }else{
+             echo'
+            <a href="ingressos/ticket-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-ticket-alt"></i>
+              <p>
+                Ingressos
+              </p>
+            </a>';
+          }
+            ?>
+          </li>
 
           <li class="nav-item">
             <a href="../sair.php" class="nav-link">
@@ -163,6 +206,17 @@ include '../banco/banco.php';
               <!-- form start -->
               <form action="alterausua.php" method="post">
                 <div class="card-body">
+                <?php
+                      if (isset($_GET['adm'])) {
+                        echo '<div class="form-group">
+                                <a href="users-page.php?adm=S" class="btn btn-info">Voltar</a>
+                              </div>';
+                      } else {
+                          echo '<div class="form-group">
+                                  <a href="users-page.php" class="btn btn-info">Voltar</a>
+                                </div>';
+                      }
+                    ?>
                   <div class="form-group">
                   <label for="email">Seu código</label>
                   <input type="text" class="form-control col-8 mb-3" readonly name="id" id="id" value="<?php echo $linha['codusu']?>">
@@ -180,7 +234,7 @@ include '../banco/banco.php';
                   <div class="form-group">
                   <label for="senha2">Senha Nova</label>
                     <input type="text" class="form-control" id="senha2" placeholder="nova senha" name="senha2">
-                    
+
                   </div>
                   <?php
                         if(isset($_GET['adm'])){
@@ -195,7 +249,7 @@ include '../banco/banco.php';
                 </div>
               </form>
             </div>
-      
+
     </section>
     <!-- /.content -->
   </div>

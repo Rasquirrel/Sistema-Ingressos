@@ -8,8 +8,9 @@ $cpf = $_POST['cpf_novo'];
 $fone = $_POST['fone_novo'];
 $email = $_POST['email_novo'];
 $senha = $_POST['senha2'];
+$data = $_POST['data'];
     // Verificar a ordem dos valores a seguir
-$sql = "update tbcliente set nome = '$nome', cpf = '$cpf', fone = '$fone', email = '$email', senha = '$senha'
+$sql = "update tbcliente set nome = '$nome', cpf = '$cpf', fone = '$fone', email = '$email', senha = '$senha', nascimento = '$data'
           where codcli = '$id'";
 
 $update = $conexao->query($sql);
@@ -26,6 +27,6 @@ if($update==true)
       header('Location: client-page.php?update=ok');
     }else{
       header('Location: client-page.php?update=erro');
-    } 
+    }
 }
 ?>

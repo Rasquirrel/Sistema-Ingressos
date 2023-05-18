@@ -146,6 +146,49 @@ include 'testasessao.php';
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="eventos/event-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar"></i>
+              <p>
+                Eventos
+              </p>
+            </a>';
+          }else{
+             echo'
+            <a href="eventos/event-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar"></i>
+              <p>
+                Eventos
+              </p>
+            </a>';
+          }
+            ?>
+          </li>
+
+          <li class="nav-item">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-ticket-alt"></i>
+              <p>
+                Ingressos
+              </p>
+            </a>';
+          }else{
+             echo'
+            <a href="ingressos/ticket-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-ticket-alt"></i>
+              <p>
+                Ingressos
+              </p>
+            </a>';
+          }
+            ?>
+          </li>
 
           <li class="nav-item">
             <a href="../sair.php" class="nav-link">
@@ -171,7 +214,7 @@ include 'testasessao.php';
           <div class="col-sm-10">
             <h1 class="m-0">Clientes</h1>
           </div><!-- /.col -->
-          
+
           <?php
             if(isset($_GET['adm'])){
               echo'
@@ -187,7 +230,7 @@ include 'testasessao.php';
               </a>';
             }
             ?>
-           
+
           <!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -198,9 +241,9 @@ include 'testasessao.php';
     <section class="content">
       <div class="container-fluid">
         <div class="card">
-        
+
           <!-- /.card-header -->
-          <?php 
+          <?php
               if(isset($_GET['delete'])) {
                 if(($_GET['delete'])== 'ok'){
                   echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -252,6 +295,7 @@ include 'testasessao.php';
                 <th>Fone</th>
                 <th>E-Mail</th>
                 <th>Senha</th>
+                <th>Data de Nascimento</th>
                 <th>Opções</th>
               </tr>
               </thead>
@@ -262,7 +306,7 @@ include 'testasessao.php';
                   $consulta = $conexao->query($sql);
                   if($consulta){
                     if ($consulta->num_rows > 0){
-                
+
                         while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
                           echo' <tr>
                           <td>'.$linha['codcli'].'</td>
@@ -271,13 +315,22 @@ include 'testasessao.php';
                           <td>'.$linha['fone'].'</td>
                           <td>'.$linha['email'].'</td>
                           <td>'.$linha['senha'].'</td>
-                          <td>
-                              <a href="altclient.php?id='.$linha['codcli'].'" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
-                              <a href="deleteclient.php?id='.$linha['codcli'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
-                          </td>
-                        </tr>';
+                          <td>'.$linha['nascimento'].'</td>';
+
+                          if (isset($_GET['adm'])) {
+                            echo '<td>
+                                      <a href="altclient.php?id='.$linha['codcli'].'&adm=S" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
+                                      <a href="deleteclient.php?id='.$linha['codcli'].'&adm=S" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
+                                  </td>';
+                          } else {
+                            echo '<td>
+                                      <a href="altclient.php?id='.$linha['codcli'].'" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
+                                      <a href="deleteclient.php?id='.$linha['codcli'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
+                                  </td>';
+                          }
+
                       }
-                      
+
                     }
                 }
               ?>
@@ -290,6 +343,7 @@ include 'testasessao.php';
                 <th>Fone</th>
                 <th>E-Mail</th>
                 <th>Senha</th>
+                <th>Data de Nascimento</th>
                 <th>Opções</th>
               </tr>
               </tfoot>

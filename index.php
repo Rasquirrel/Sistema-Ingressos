@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="eventios fotis/fotos.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -40,17 +41,17 @@
       </li>
     </ul>
 
-    <!-- Right navbar links -->
+    <!-- Right navbar links  https://fontawesome.com/v6/icons/poo?f=classic&s=solid-->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
-        <a class="nav-link btn btn-outline-info m-2"  href="#">
-          <i class="fas fa-th-large"></i> Registrar-se
+        <a class="nav-link btn btn-outline-info m-2"  href="register-page.html">
+        <i class="fa-solid fa-person-circle-plus"></i>Registrar-se
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link btn btn-outline-primary m-2"  href="#">
-          <i class="fas fa-th-large"></i> Entrar
+        <a class="nav-link btn btn-outline-primary m-2"  href="a_client-pages/index-clientes.php">
+        <i class="fa-solid fa-door-open"></i> Entrar
         </a>
       </li>
       <li class="nav-item">
@@ -134,8 +135,23 @@
         <div class="card-footer">
           Sistema de Ingressos
         </div>
-
       </div>
+
+
+
+        </tr>
+      <table class="content">
+        <tr>
+          <div class="eventios">
+            <img src="eventios fotis/download.jfif" class="float-left fotios">
+            <div id="infs" style="width:70%;float:right;">
+                  <b>Forró das Antigas</b>
+                  <p>São Paulo - São Paulo</p>
+                  <p>Dia 27/09  |  18:00 às 24:00  |  Sexta-feira </p>
+                </div>
+          </div>
+        </tr>
+      </table>
     </section>
     <!-- /.content -->
   </div>

@@ -54,12 +54,19 @@
         }
       ?>
       </p>
-      <div class="row">
-        <a class="btn btn-info col-3" href="../index.php">Voltar</a>
-        <p class="login-box-msg col-9">Faça login para iniciar sua sessão</p>
-      </div>
 
       <form action="login.php" method="POST">
+        <div class="row">
+          <div class="col-3 mt-2">
+            <a href="../index.php" class="btn btn-info bnt-block">Voltar</a>  
+          </div>
+          <div class="col-9">
+            <p class="login-box-msg">
+              Faça login para iniciar sua sessão.
+            </p>
+
+          </div>
+        </div>
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="E-mail" name="email">
           <div class="input-group-append">

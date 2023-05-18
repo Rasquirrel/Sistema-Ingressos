@@ -120,6 +120,49 @@ include 'testasessao.php';
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="eventos/event-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar"></i>
+              <p>
+                Eventos
+              </p>
+            </a>';
+          }else{
+             echo'
+            <a href="eventos/event-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar"></i>
+              <p>
+                Eventos
+              </p>
+            </a>';
+          }
+            ?>
+          </li>
+
+          <li class="nav-item">
+            <?php
+            if(isset($_GET['adm'])){
+            echo'
+            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-ticket-alt"></i>
+              <p>
+                Ingressos
+              </p>
+            </a>';
+          }else{
+             echo'
+            <a href="ingressos/ticket-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-ticket-alt"></i>
+              <p>
+                Ingressos
+              </p>
+            </a>';
+          }
+            ?>
+          </li>
 
           <li class="nav-item">
             <a href="../sair.php" class="nav-link">
@@ -147,7 +190,7 @@ include 'testasessao.php';
 
     <!-- Main content -->
     <section class="content">
-    <?php 
+    <?php
         if(isset($_GET['insert'])) {
           if(($_GET['insert'])== 'ok'){
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -167,7 +210,7 @@ include 'testasessao.php';
           }
           if(($_GET['insert'])== 'Senhaerro'){
             echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Atenção</strong> As senhas estão diferentes!                                                                        
+            <strong>Atenção</strong> As senhas estão diferentes!
            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
        </button>
@@ -183,6 +226,18 @@ include 'testasessao.php';
               <!-- form start -->
               <form action="salvausua.php" method="post">
                 <div class="card-body">
+                  <?php
+                      if (isset($_GET['adm'])) {
+                        echo '<div class="form-group">
+                                <a href="users-page.php?adm=S" class="btn btn-info">Voltar</a>
+                              </div>';
+                      } else {
+                          echo '<div class="form-group">
+                                  <a href="users-page.php" class="btn btn-info">Voltar</a>
+                                </div>';
+                      }
+                    ?>
+
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="insira o endereço de email" name="email">
@@ -194,9 +249,9 @@ include 'testasessao.php';
                   <div class="form-group">
                   <label for="exampleInputPassword1">Repetir Senha</label>
                     <input type="password" required class="form-control" id="senha2" placeholder="repetir senha" name="senha2">
-                    
+
                   </div>
-      
+
                 </div>
                 <!-- /.card-body -->
 
@@ -211,7 +266,7 @@ include 'testasessao.php';
                 </div>
               </form>
             </div>
-      
+
     </section>
     <!-- /.content -->
   </div>

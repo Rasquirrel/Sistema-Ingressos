@@ -1,6 +1,6 @@
 <?php
     include 'banco/banco.php';
-    
+
 //echo 'conexão ok!'
 //recebendo variáveis por post
 $email = $_POST ['email'];
@@ -20,6 +20,5 @@ if ($consulta->num_rows > 0){
 }else{
     header('Location: index-admins.php?login=erro');
    // echo 'Usuário não encontrado';
-}
 }
 ?>
