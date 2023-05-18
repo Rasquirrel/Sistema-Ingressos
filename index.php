@@ -45,7 +45,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
-        <a class="nav-link btn btn-outline-info m-2"  href="register-page.html">
+        <a class="nav-link btn btn-outline-info m-2"  href="register-page.php">
         <i class="fa-solid fa-person-circle-plus"></i>Registrar-se
         </a>
       </li>

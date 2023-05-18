@@ -240,7 +240,7 @@ include 'testasessao.php';
           }
           if(($_GET['insert'])== 'erro'){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Atenção</strong> Erro interno no servidor.
+            <strong>Atenção</strong> Erro interno no servidor(um cliente com este email já existe, ou outro problema).
            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
        </button>
