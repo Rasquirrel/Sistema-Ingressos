@@ -27,6 +27,42 @@
 
       <form action="register.php" method="post">
         <div class="form-group">
+            <div class="row">
+              <div class="col-12">
+                  <?php
+                      if (isset($_GET['registro'])) {
+                        if (isset($_GET['registro']) == "ok") {
+                          echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <strong>Atenção</strong> Registro feito com sucesso! Volte para a página inicial e faça login.
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                     </button>
+                   </div>';
+                        }
+                      }
+                      if (isset($_GET['erro'])) {
+                        if (isset($_GET['erro']) == "email_existe") {
+                          echo '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                          <strong>Atenção</strong> Registro não realizado! Um usuário com este mesmo e-mail já existe!
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                     </button>
+                   </div>';
+                        }
+                        elseif (isset($_GET['erro']) == "senhas_diferem") {
+                          echo '<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                          <strong>Atenção</strong> Registro não realizado! As senhas não conferem!
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                     </button>
+                   </div>';
+                        }
+                      }
+                  ?>
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
           <div class="row">
             <div class="col-3">
               <a href="index.php" class="btn btn-primary">Voltar</a>
@@ -46,12 +82,31 @@
           </div>
         </div>
         <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="CPF" name="cpf">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-address-card"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Telefone" name="fone">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-address-card"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="E-mail" name="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="date" class="form-control" name="nascimento" id="nascimento">
         </div>
         <div class="input-group mb-3">
           <input type="password" class="form-control" placeholder="Senha" name="senha1">
@@ -69,7 +124,7 @@
             </div>
           </div>
         </div>
-        
+
           <!-- /.col -->
           <div class="col-12">
             <button type="submit" class="btn btn-primary btn-block">Cadastre-se</button>
