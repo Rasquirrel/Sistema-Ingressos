@@ -47,35 +47,7 @@ include 'testasessao.php';
       </li>
     </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
+    
   </nav>
   <!-- /.navbar -->
 
@@ -113,27 +85,28 @@ include 'testasessao.php';
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="../clientes/client-page.php?adm=S" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Clientes
               </p>
             </a>
           </li>
-          <li class="nav-item">
+
+           <li class="nav-item">
             <?php
             if(isset($_GET['adm'])){
             echo'
-            <a href="eventos/event-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
               </p>
             </a>';
           }else{
              echo'
-            <a href="eventos/event-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
               </p>
@@ -142,27 +115,6 @@ include 'testasessao.php';
             ?>
           </li>
 
-          <li class="nav-item">
-            <?php
-            if(isset($_GET['adm'])){
-            echo'
-            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
-              </p>
-            </a>';
-          }else{
-             echo'
-            <a href="ingressos/ticket-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
-              </p>
-            </a>';
-          }
-            ?>
-          </li>
 
           <li class="nav-item">
             <a href="../sair.php" class="nav-link">
@@ -190,7 +142,7 @@ include 'testasessao.php';
 
     <!-- Main content -->
     <section class="content">
-    <?php
+    <?php 
         if(isset($_GET['insert'])) {
           if(($_GET['insert'])== 'ok'){
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -210,7 +162,7 @@ include 'testasessao.php';
           }
           if(($_GET['insert'])== 'Senhaerro'){
             echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Atenção</strong> As senhas estão diferentes!
+            <strong>Atenção</strong> As senhas estão diferentes!                                                                        
            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
        </button>
@@ -226,18 +178,6 @@ include 'testasessao.php';
               <!-- form start -->
               <form action="salvausua.php" method="post">
                 <div class="card-body">
-                  <?php
-                      if (isset($_GET['adm'])) {
-                        echo '<div class="form-group">
-                                <a href="users-page.php?adm=S" class="btn btn-info">Voltar</a>
-                              </div>';
-                      } else {
-                          echo '<div class="form-group">
-                                  <a href="users-page.php" class="btn btn-info">Voltar</a>
-                                </div>';
-                      }
-                    ?>
-
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="insira o endereço de email" name="email">
@@ -249,9 +189,9 @@ include 'testasessao.php';
                   <div class="form-group">
                   <label for="exampleInputPassword1">Repetir Senha</label>
                     <input type="password" required class="form-control" id="senha2" placeholder="repetir senha" name="senha2">
-
+                    
                   </div>
-
+      
                 </div>
                 <!-- /.card-body -->
 
@@ -266,7 +206,7 @@ include 'testasessao.php';
                 </div>
               </form>
             </div>
-
+      
     </section>
     <!-- /.content -->
   </div>
@@ -317,8 +257,6 @@ include 'testasessao.php';
 <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 

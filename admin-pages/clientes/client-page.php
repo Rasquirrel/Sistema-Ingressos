@@ -47,35 +47,7 @@ include 'testasessao.php';
       </li>
     </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
+    
   </nav>
   <!-- /.navbar -->
 
@@ -139,51 +111,30 @@ include 'testasessao.php';
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Clientes
               </p>
             </a>
           </li>
+          
           <li class="nav-item">
             <?php
             if(isset($_GET['adm'])){
             echo'
-            <a href="eventos/event-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
               </p>
             </a>';
           }else{
              echo'
-            <a href="eventos/event-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
-              </p>
-            </a>';
-          }
-            ?>
-          </li>
-
-          <li class="nav-item">
-            <?php
-            if(isset($_GET['adm'])){
-            echo'
-            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
-              </p>
-            </a>';
-          }else{
-             echo'
-            <a href="ingressos/ticket-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
               </p>
             </a>';
           }
@@ -214,7 +165,7 @@ include 'testasessao.php';
           <div class="col-sm-10">
             <h1 class="m-0">Clientes</h1>
           </div><!-- /.col -->
-
+          
           <?php
             if(isset($_GET['adm'])){
               echo'
@@ -230,7 +181,7 @@ include 'testasessao.php';
               </a>';
             }
             ?>
-
+           
           <!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -241,50 +192,7 @@ include 'testasessao.php';
     <section class="content">
       <div class="container-fluid">
         <div class="card">
-
-          <!-- /.card-header -->
-          <?php
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'ok'){
-                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>Sucesso</strong> Cliente excluido!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'erro'){
-                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Erro, cliente não excluido!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-              if(isset($_GET['update'])) {
-                if(($_GET['update'])== 'ok'){
-                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>Sucesso</strong> cliente atualizado!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-              if(isset($_GET['update'])) {
-                if(($_GET['update'])== 'erro'){
-                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Erro, cliente não atualizado!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-            ?>
+        
           <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
               <thead>
@@ -295,18 +203,18 @@ include 'testasessao.php';
                 <th>Fone</th>
                 <th>E-Mail</th>
                 <th>Senha</th>
-                <th>Data de Nascimento</th>
+                <th>Nascimento</th>
                 <th>Opções</th>
               </tr>
               </thead>
-              <tbody>
+              <tbody id="tbcli">
               <?php
                   include '../banco/banco.php';
                   $sql = "select * from tbcliente";
                   $consulta = $conexao->query($sql);
                   if($consulta){
                     if ($consulta->num_rows > 0){
-
+                      if(isset($_GET['adm'])){
                         while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
                           echo' <tr>
                           <td>'.$linha['codcli'].'</td>
@@ -315,22 +223,31 @@ include 'testasessao.php';
                           <td>'.$linha['fone'].'</td>
                           <td>'.$linha['email'].'</td>
                           <td>'.$linha['senha'].'</td>
-                          <td>'.$linha['nascimento'].'</td>';
-
-                          if (isset($_GET['adm'])) {
-                            echo '<td>
-                                      <a href="altclient.php?id='.$linha['codcli'].'&adm=S" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
-                                      <a href="deleteclient.php?id='.$linha['codcli'].'&adm=S" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
-                                  </td>';
-                          } else {
-                            echo '<td>
-                                      <a href="altclient.php?id='.$linha['codcli'].'" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
-                                      <a href="deleteclient.php?id='.$linha['codcli'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
-                                  </td>';
-                          }
-
+                          <td>'.$linha['nasc'].'</td>
+                          <td>
+                              <a href="altclient.php?id='.$linha['codcli'].'&adm=S" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
+                              <button title="Deletar" id="'.$linha['codcli'].'" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></button>
+                          </td>
+                        </tr>';
                       }
-
+                    }else{
+                      while(  $linha=$consulta->fetch_array(MYSQLI_ASSOC)){
+                        echo' <tr>
+                        <td>'.$linha['codcli'].'</td>
+                        <td>'.$linha['nome'].'</td>
+                        <td>'.$linha['cpf'].'</td>
+                        <td>'.$linha['fone'].'</td>
+                        <td>'.$linha['email'].'</td>
+                        <td>'.$linha['senha'].'</td>
+                        <td>'.$linha['nasc'].'</td>
+                        <td>
+                            <a href="altclient.php?id='.$linha['codcli'].'" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
+                            <button title="Deletar" id="'.$linha['codcli'].'" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></button>
+                        </td>
+                      </tr>';
+                    }
+                    }
+                      
                     }
                 }
               ?>
@@ -343,7 +260,7 @@ include 'testasessao.php';
                 <th>Fone</th>
                 <th>E-Mail</th>
                 <th>Senha</th>
-                <th>Data de Nascimento</th>
+                <th>Nascimento</th>
                 <th>Opções</th>
               </tr>
               </tfoot>
@@ -402,8 +319,6 @@ include 'testasessao.php';
 <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 
@@ -421,8 +336,64 @@ include 'testasessao.php';
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="../../js/sweet-alert/sweetalert.min.js"></script> 
+
 <!-- Page specific script -->
 <script>
+$("#tbcli").on('click','button', function(){
+                     let iddelete = $(this).attr("id");
+                       
+                     swal({
+                                title: "DESEJA DELETAR?",
+                                text: "procedimento para deletar dados!",
+                                icon: "info",
+                                buttons: ["Não", "Sim"],
+                                dangerMode: true,
+                              })//fim swal
+                              .then((willDelete) => {
+                                if (willDelete) {
+                                  $.post('deleteclient.php', {id:iddelete} ,function(retorndelete){
+                                  if(retorndelete != 'vazio'){
+                                    swal("dados deletados", {  icon: "success",	});
+                                    window.setTimeout('location.reload()',1000);
+                                      }else{
+                                        swal("não deletou!",{ icon: "error", });
+                                      }
+                                  });//fim do post do delete conceitos
+                                } else {
+                                swal("não deletou!",{ icon: "error", });
+                                }//fim do if
+                  });//fim do then
+});//fim do deleta usu
+
+
+  $("#example1").on('click','button', function(){
+                              let iddelete = $(this).attr("id");    
+                              swal({
+                                title: "DESEJA DELETAR?",
+                                text: "procedimento para deletar dados!",
+                                icon: "info",
+                                buttons: ["Não", "Sim"],
+                                dangerMode: true,
+                              })//fim swal
+                              .then((willDelete) => {
+                                if (willDelete) {
+                                  $.post('deleteclient.php', {id:iddelete} ,function(retorndelete){
+                                  if(retorndelete != 'vazio'){
+                                    swal("dados deletados", {  icon: "success",	});
+                                    window.setTimeout('location.reload()',1000);
+                                      }else{
+                                        swal("não deletou!", {  icon: "error",	});
+                                      }
+                                  });//fim do post do delete conceitos
+                                } else {
+                                swal("não deletou!", {  icon: "error",	});
+                                }//fim do if
+                              });//fim do then       
+  });
+
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -440,5 +411,7 @@ include 'testasessao.php';
   });
 </script>
 
+    <!-- Core JS -->    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 </body>
 </html>

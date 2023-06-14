@@ -144,12 +144,13 @@ include 'testasessao.php';
           }
             ?>
           </li>
+
           <li class="nav-item">
             <?php
             if(isset($_GET['adm'])){
             echo'
             <a href="eventos/event-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
               </p>
@@ -157,31 +158,9 @@ include 'testasessao.php';
           }else{
              echo'
             <a href="eventos/event-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
-              </p>
-            </a>';
-          }
-            ?>
-          </li>
-
-          <li class="nav-item">
-            <?php
-            if(isset($_GET['adm'])){
-            echo'
-            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
-              </p>
-            </a>';
-          }else{
-             echo'
-            <a href="ingressos/ticket-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
               </p>
             </a>';
           }
@@ -290,8 +269,6 @@ include 'testasessao.php';
 <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../dist/js/pages/dashboard.js"></script>
 </body>

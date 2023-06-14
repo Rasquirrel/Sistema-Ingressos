@@ -8,7 +8,7 @@ include '../banco/banco.php';
   //realizando busca
     $busca = $conexao->query($sql);
   //convertendo resultado em array
-    $linha = $busca->fetch_array(MYSQLI_ASSOC);
+    $linha = $busca->fetch_array(MYSQLI_ASSOC);  
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +42,8 @@ include '../banco/banco.php';
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
   <!--jquery-->
   <script src="../../build/js/jquery.js"></script>
+  <!--sweetalert-->
+  <link rel="stylesheet" href="../../js/sweetalert.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -55,35 +57,6 @@ include '../banco/banco.php';
       </li>
     </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
   </nav>
   <!-- /.navbar -->
 
@@ -121,51 +94,45 @@ include '../banco/banco.php';
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Clientes
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <?php
-            if(isset($_GET['adm'])){
-            echo'
-            <a href="eventos/event-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
-              <p>
-                Eventos
-              </p>
-            </a>';
-          }else{
-             echo'
-            <a href="eventos/event-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
-              <p>
-                Eventos
-              </p>
-            </a>';
-          }
+          <?php
+             if(isset($_GET['adm'])){
+              echo'
+              <a href="../clientes/client-page.php?adm=S" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Clientes
+                </p>
+              </a>';
+             }else{
+              echo'
+              <a href="../clientes/client-page.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Clientes
+                </p>
+              </a>';
+             }
+            
             ?>
           </li>
 
-          <li class="nav-item">
+
+           <li class="nav-item">
             <?php
             if(isset($_GET['adm'])){
             echo'
-            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
+            <a href="../eventos/event-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
-                Ingressos
+                Eventos
               </p>
             </a>';
           }else{
              echo'
-            <a href="ingressos/ticket-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
+            <a href="../eventos/event-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
-                Ingressos
+                Eventos
               </p>
             </a>';
           }
@@ -204,52 +171,35 @@ include '../banco/banco.php';
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="alterausua.php" method="post">
                 <div class="card-body">
-                <?php
-                      if (isset($_GET['adm'])) {
-                        echo '<div class="form-group">
-                                <a href="users-page.php?adm=S" class="btn btn-info">Voltar</a>
-                              </div>';
-                      } else {
-                          echo '<div class="form-group">
-                                  <a href="users-page.php" class="btn btn-info">Voltar</a>
-                                </div>';
-                      }
-                    ?>
                   <div class="form-group">
                   <label for="email">Seu código</label>
-                  <input type="text" class="form-control col-8 mb-3" readonly name="id" id="id" value="<?php echo $linha['codusu']?>">
+                  <input type="text" class="form-control mb-3" readonly name="id" id="id" value="<?php echo $linha['codusu']?>">
                     <label for="email">Email Antigo</label>
                     <input type="email" class="form-control" id="email" readonly name="email" value="<?php echo $linha['email']?>">
                   </div>
                   <div class="form-group">
                     <label for="email_novo">Email Novo</label>
-                    <input type="email" class="form-control" id="email_novo" placeholder="insira o novo endereço de email" name="email_novo">
+                    <input type="email" class="form-control" id="email_novo" placeholder="insira o novo endereço de email" name="email_novo" required>
                   </div>
-                  <div class="form-group">
-                    <label for="senha1">Senha Antiga</label>
-                    <input type="text" class="form-control" id="senha1" readonly name="senha1" value="<?php echo $linha['senha']?>">
+                  <div class="row">
+                        <div class="form-group col-6">
+                          <label for="senha1">Senha Antiga</label>
+                          <input type="text" class="form-control" id="senha1" readonly name="senha1" value="<?php echo $linha['senha']?>">
+                        </div>
+                        <div class="form-group col-6">
+                        <label for="senha2">Senha Nova</label>
+                          <input type="text" class="form-control" id="senha2" placeholder="nova senha" name="senha2" required>
+                        </div>
                   </div>
-                  <div class="form-group">
-                  <label for="senha2">Senha Nova</label>
-                    <input type="text" class="form-control" id="senha2" placeholder="nova senha" name="senha2">
-
-                  </div>
-                  <?php
-                        if(isset($_GET['adm'])){
-                        echo'<input type="text" hidden class="form-control" id="adm" name="adm" value="adm">';
-                        }
-                  ?>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Alterar</button>
+                  <button id="submitalt" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Alterar</button>
                 </div>
-              </form>
             </div>
-
+      
     </section>
     <!-- /.content -->
   </div>
@@ -300,8 +250,6 @@ include '../banco/banco.php';
 <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 
@@ -321,6 +269,38 @@ include '../banco/banco.php';
 
 <!-- Page specific script -->
 <script>
+  $("#submitalt").click(function(){
+                  let id = $('#id').val();
+                  let email = $('#email_novo').val();
+                  let senha = $('#senha2').val();
+                  if(senha!='' && email!=''){
+                  swal({
+                                title: "DESEJA ALTERAR?",
+                                text: "Verifique se os dados estão corretos!",
+                                icon: "info",
+                                buttons: ["Não", "Sim"],
+                                dangerMode: true,
+                              })//fim swal
+                              .then((willUpdate) => {
+                                if (willUpdate) {
+                                  $.post('alterausua.php', {id:id,email:email,senha:senha} ,function(retornupdate){
+                                  if(retornupdate != 'vazio'){
+                                    swal("dados atualizados", {  icon: "success",	});
+                                    window.setTimeout('location.reload()',1000);
+                                      }else{
+                                          swal("não alterou!", {  icon: "error",	});
+                                      }
+                                  });//fim do post do delete conceitos
+                                } else {
+                                swal("não alterou!", {  icon: "error",	});
+                                }//fim do if
+                              });//fim do then
+                  }else{
+                    swal("1 ou mais campos não preenchidos!", {  icon: "warning",	});
+                  }             
+          })
+
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -338,5 +318,7 @@ include '../banco/banco.php';
   });
 </script>
 
+    <!-- Core JS -->    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 </body>
 </html>

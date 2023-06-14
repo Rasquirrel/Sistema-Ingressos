@@ -1,0 +1,27 @@
+// USANDO POST
+$.post('update.php', {codprof: cod, nome: nome, formacao: formacao, esp: esp,fone1:fone1, fone2:fone2,uf:uf, cons:cons }, function(resposta) {
+  if (resposta != false) {
+      $("#message").html("<div class='alert alert-danger'><i class='glyphicon glyphicon-ok'></i><button type=button class=close data-dismiss=alert>[X] Fechar</button>"+resposta+"</div>");     			
+		}else{
+	$("#message").html("<div class='alert alert-success'><i class='glyphicon glyphicon-ok'></i><button type=button class=close data-dismiss=alert>[X] Fechar</button>Dados Alterados com sucesso</div>");						
+		$(location).attr('href',"frmbusca.php");
+					
+	}
+});	
+
+//****MOSTANDO CONSULTA NA TABELA
+$('table').on('click','a', function(){
+    
+     var dados = $(this).attr("id");
+     var botao_selecionado = dados.split("|");
+     let id = botao_selecionado[0];
+	
+	 if(botao_selecionado[1]=='E') {	
+     }
+);
+
+if ( $("#administrador").is(":checked")==true)
+					     { $("#cad").prop('checked',true)	}
+				else
+						{$("#cad").prop('checked',false)}
+					})

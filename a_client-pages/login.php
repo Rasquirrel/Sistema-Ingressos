@@ -1,6 +1,6 @@
 <?php
     include 'banco/banco.php';
-
+    
 //echo 'conexão ok!'
 //recebendo variáveis por post
 $email = $_POST ['email'];
@@ -14,11 +14,11 @@ if ($consulta->num_rows > 0){
     session_start();
     $_SESSION['login'] = 'ok';
     $linha=$consulta->fetch_array(MYSQLI_ASSOC);
-    $_SESSION['usuario'] = $linha['codusu'];
-    header('Location: home-page.php?login=ok');
+    $_SESSION['client'] = $linha['codcli'];
+    header("Location: home-page.php?login=ok&cli=".$linha['codcli']);
    // echo 'Usuário Encontrado';
 }else{
-    header('Location: index-admins.php?login=erro');
+    header('Location: index-clientes.php?login=erro');
    // echo 'Usuário não encontrado';
 }
 ?>

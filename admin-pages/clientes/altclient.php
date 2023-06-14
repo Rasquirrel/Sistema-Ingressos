@@ -8,7 +8,7 @@ include '../banco/banco.php';
   //realizando busca
     $busca = $conexao->query($sql);
   //convertendo resultado em array
-    $linha = $busca->fetch_array(MYSQLI_ASSOC);
+    $linha = $busca->fetch_array(MYSQLI_ASSOC);  
 ?>
 
 <!DOCTYPE html>
@@ -55,35 +55,7 @@ include '../banco/banco.php';
       </li>
     </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
+    
   </nav>
   <!-- /.navbar -->
 
@@ -150,7 +122,7 @@ include '../banco/banco.php';
             <?php
              if(isset($_GET['adm'])){
               echo
-              '<a href="client-page.php?adm=S" class="nav-link">
+              '<a href="client-page.php?adm=S" class="nav-link active">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                   Clientes
@@ -158,7 +130,7 @@ include '../banco/banco.php';
               </a>';
              }else{
               echo'
-              <a href="client-page.php" class="nav-link">
+              <a href="client-page.php" class="nav-link active">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                   Clientes
@@ -167,20 +139,21 @@ include '../banco/banco.php';
              }
             ?>
           </li>
+           
           <li class="nav-item">
             <?php
             if(isset($_GET['adm'])){
             echo'
-            <a href="eventos/event-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
               </p>
             </a>';
           }else{
              echo'
-            <a href="eventos/event-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
               </p>
@@ -189,27 +162,6 @@ include '../banco/banco.php';
             ?>
           </li>
 
-          <li class="nav-item">
-            <?php
-            if(isset($_GET['adm'])){
-            echo'
-            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
-              </p>
-            </a>';
-          }else{
-             echo'
-            <a href="ingressos/ticket-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
-              </p>
-            </a>';
-          }
-            ?>
-          </li>
           <li class="nav-item">
             <a href="../sair.php" class="nav-link">
               <i class="nav-icon fas fa-arrow-right-from-bracket"></i>
@@ -241,39 +193,44 @@ include '../banco/banco.php';
                 <h3 class="card-title">Alteração de Clientes &nbsp; <i class="fa-solid fa-person-circle-plus"></i></h3>
               </div>
               <!-- /.card-header -->
-              <!-- form start -->
-              <form action="alteraclient.php" method="post">
                 <div class="card-body">
-                <?php
-                      if (isset($_GET['adm'])) {
-                        echo '<div class="form-group">
-                                <a href="client-page.php?adm=S" class="btn btn-info">Voltar</a>
-                              </div>';
-                      } else {
-                          echo '<div class="form-group">
-                                  <a href="client-page.php" class="btn btn-info">Voltar</a>
-                                </div>';
-                      }
-                    ?>
                   <div class="form-group">
                     <label for="email">Seu código</label>
-                    <input type="text" class="form-control col-8 mb-3" readonly name="id" id="id" value="<?php echo $linha['codcli']?>">
+                    <input type="text" class="form-control mb-3" readonly name="id" id="id" value="<?php echo $linha['codcli']?>">
                     <label for="nome">Nome Antigo</label>
                     <input type="text" readonly class="form-control" id="nome" name="nome" value="<?php echo $linha['nome']?>">
                     <label for="nome_novo">Nome Novo</label>
                     <input type="text" class="form-control" id="nome_novo" placeholder="insira o novo nome" name="nome_novo">
                   </div>
-                  <div class="form-group">
+                  <div class="row">
+                  <div class="form-group col-6">
                     <label for="cpf">CPF Antigo</label>
                     <input type="text" class="form-control" id="cpf" readonly name="cpf" value="<?php echo $linha['cpf']?>">
+                        </div>
+                        <div class="form-group col-6">
                     <label for="email_novo">CPF Novo</label>
                     <input type="text" class="form-control" id="cpf_novo" placeholder="insira o novo CPF" name="cpf_novo">
                   </div>
-                  <div class="form-group">
-                    <label for="fone">Fone Antigo</label>
-                    <input type="text" class="form-control" id="fone" readonly name="fone" value="<?php echo $linha['fone']?>">
-                    <label for="email_novo">Fone Novo</label>
-                    <input type="text" class="form-control" id="fone_novo" placeholder="insira o novo fone" name="fone_novo">
+                  </div>
+                  <div class="row">
+                        <div class="form-group col-6">
+                          <label for="fone">Fone Antigo</label>
+                          <input type="text" class="form-control" id="fone" readonly name="fone" value="<?php echo $linha['fone']?>">
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="fone_novo">Fone Novo</label>
+                          <input type="text" class="form-control" id="fone_novo" placeholder="insira o novo fone" name="fone_novo">
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="form-group col-6">
+                          <label for="data">Data de Nascimento Antigo</label>
+                          <input type="date" class="form-control" id="data" readonly name="data" value="<?php echo $linha['nasc']?>">
+                        </div>
+                        <div class="form-group col-6">
+                          <label for="data_novo">Data de Nascimento Novo</label>
+                          <input type="date" class="form-control" id="data_novo" name="data_novo">
+                        </div>
                   </div>
                   <div class="form-group">
                     <label for="email">Email Antigo</label>
@@ -281,33 +238,24 @@ include '../banco/banco.php';
                     <label for="email_novo">Email Novo</label>
                     <input type="email" class="form-control" id="email_novo" placeholder="insira o novo endereço de email" name="email_novo">
                   </div>
-                  <div class="form-group">
-                    <label for="senha1">Senha Antiga</label>
-                    <input type="text" class="form-control" id="senha1" readonly name="senha1" value="<?php echo $linha['senha']?>">
+                  <div class="row">
+                        <div class="form-group col-6">
+                          <label for="senha1">Senha Antiga</label>
+                          <input type="text" class="form-control" id="senha1" readonly name="senha1" value="<?php echo $linha['senha']?>">
+                        </div>
+                        <div class="form-group col-6">
+                        <label for="senha2">Senha Nova</label>
+                          <input type="text" class="form-control" id="senha2" placeholder="nova senha" name="senha2">
+                        </div>
                   </div>
-                  <div class="form-group">
-                  <label for="senha2">Senha Nova</label>
-                    <input type="text" class="form-control" id="senha2" placeholder="nova senha" name="senha2">
-
-                  </div>
-                  <div class="form-group">
-                    <label for="data">Data de Nascimento</label>
-                    <input type="date" required class="form-control" id="data" name="data" value="<?php echo $linha['nascimento']?>">
-                  </div>
-                  <?php
-                        if(isset($_GET['adm'])){
-                        echo'<input type="text" hidden class="form-control" id="adm" name="adm" value="adm">';
-                        }
-                  ?>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Alterar</button>
+                  <button id="submitcli" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Alterar</button>
                 </div>
-              </form>
             </div>
-
+      
     </section>
     <!-- /.content -->
   </div>
@@ -358,8 +306,6 @@ include '../banco/banco.php';
 <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 
@@ -377,8 +323,123 @@ include '../banco/banco.php';
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+<!--mask-->
+<script src="../../mascaras/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+<script src="../../mascaras/jquery.inputmask.js" type="text/javascript"></script>
+<script src="../../mascaras/jquery.inputmask.numeric.extensions.js" type="text/javascript"></script>
 <!-- Page specific script -->
 <script>
+  $("#submitcli").click(function(){
+                  let id = $('#id').val();
+                  let nome = $('#nome_novo').val();
+                  let cpf = $('#cpf_novo').val();
+                  let fone = $('#fone_novo').val();
+                  let email = $('#email_novo').val();
+                  let data = $('#data_novo').val();
+                  let senha = $('#senha2').val();
+                  if(senha!='' && email!='' && nome!='' && cpf!='' && fone!='' && data!=''){
+                  swal({
+                                title: "DESEJA ALTERAR?",
+                                text: "Verifique se os dados estão corretos!",
+                                icon: "info",
+                                buttons: ["Não", "Sim"],
+                                dangerMode: true,
+                              })//fim swal
+                              .then((willUpdate) => {
+                                if (willUpdate) {
+                                  $.post('alteraclient.php', {id:id,nome:nome,cpf:cpf,fone:fone,email:email,senha:senha,data:data} ,function(retornupdate){
+                                  if(retornupdate != 'vazio'){
+                                    swal("dados atualizados", {  icon: "success",	});
+                                    window.setTimeout('location.reload()',1000);
+                                      }else{
+                                          swal("não alterou!", {  icon: "error",	});
+                                      }
+                                  });//fim do post do delete conceitos
+                                } else {
+                                swal("não alterou!", {  icon: "error",	});
+                                }//fim do if
+                              });//fim do then
+                  }else{
+                    swal("1 ou mais campos não preenchidos!", {  icon: "warning",	});
+                  }             
+          })//fim submitcli
+
+  $(document).ready(function(){ 
+//$("#nasc").inputmask("99/99/9999"); 
+// $("#cep").inputmask("99.999-999"); 
+    $("#cpf_novo").inputmask("999.999.999-99");
+    $("#fone_novo").inputmask("(99)99999-9999");
+
+    function validarCPF(cpf) {
+        cpf = cpf.replace(/[^\d]+/g, '');
+        if (cpf == '') {
+          return false;
+        }
+        // Elimina CPFs invalidos conhecidos
+        if (
+          cpf.length != 11 ||
+          cpf == "00000000000" ||
+          cpf == "11111111111" ||
+          cpf == "22222222222" ||
+          cpf == "33333333333" ||
+          cpf == "44444444444" ||
+          cpf == "55555555555" ||
+          cpf == "66666666666" ||
+          cpf == "77777777777" ||
+          cpf == "88888888888" ||
+          cpf == "99999999999"
+        ) {
+          return false;
+        }
+        // Valida 1o digito
+        var add = 0;
+        for (var i = 0; i < 9; i++) {
+          add += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        var rev = 11 - (add % 11);
+        if (rev == 10 || rev == 11) {
+          rev = 0;
+        }
+        if (rev != parseInt(cpf.charAt(9))) {
+          return false;
+        }
+        // Valida 2o digito
+        add = 0;
+        for (var i = 0; i < 10; i++) {
+          add += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        rev = 11 - (add % 11);
+        if (rev == 10 || rev == 11) {
+          rev = 0;
+        }
+        if (rev != parseInt(cpf.charAt(10))) {
+          return false;
+        }
+        return true;
+      }
+
+      // Função para exibir mensagem de CPF inválido
+      function exibirMensagemCPFInvalido() {
+        $("#cpf_novo").addClass("is-invalid");
+        $("#cpf-feedback").html("CPF inválido");
+      }
+
+      // Evento de validação do CPF ao perder o foco do campo
+      $("#cpf_novo").on("blur", function() {
+        var cpf = $(this).val();
+        if (!validarCPF(cpf)) {
+          exibirMensagemCPFInvalido();
+        } else {
+          $("#cpf_novo").removeClass("is-invalid");
+          $("#cpf-feedback").html("");
+        }
+      });//fim validar cpf
+
+//$("#cnpj").mask("99.999.999/9999-99");
+//$("#data").mask("99/99/9999");
+  $('#').click(function(){
+
+  });
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -394,7 +455,10 @@ include '../banco/banco.php';
       "responsive": true,
     });
   });
-</script>
+});
 
+</script>
+<!-- Core JS -->    
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 </body>
 </html>

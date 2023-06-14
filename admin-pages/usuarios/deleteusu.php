@@ -1,21 +1,14 @@
 <?php
 include '../banco/banco.php';
 
-$id = $_GET['id'];
+$id = $_POST['id'];
 
 $sql = "delete from tbusua where codusu = '$id'";
 $consulta = $conexao->query($sql);
-if(isset($_GET['adm'])){
+
             if ($consulta){
-                header('Location: users-page.php?delete=ok&adm=S');
+                echo 'ok';
             }else{
-                header('Location: users-page.php?delete=erro&adm=S');
+                echo 'vazio';
             }
-}else{
-            if ($consulta){
-                header('Location: users-page.php?delete=ok');
-            }else{
-                header('Location: users-page.php?delete=erro');
-            }
-}
 ?>

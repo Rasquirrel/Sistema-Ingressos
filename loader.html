@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.custom-loader {
+  width:60px;
+  height: calc(0.866*60px);
+  color: #8A19F4;
+  --c1:conic-gradient(from 149deg at top   ,#0000 ,currentColor 2deg 59deg,#0000 61deg);
+  --c2:conic-gradient(from -31deg at bottom,#0000 ,currentColor 1deg 61deg,#0000 63deg);
+  background:
+    var(--c1) top,
+    var(--c1) bottom right,
+    var(--c2) bottom,
+    var(--c1) bottom left;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  animation: sh7 1s infinite;
+}
+
+@keyframes sh7 {
+  80%,100%{background-position: bottom right,bottom left,bottom,top}
+}
+
+
+
+.custom-loader2 {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  color:#B134F4;
+  background:
+    linear-gradient(currentColor 0 0) right  /51% 100%,
+    linear-gradient(currentColor 0 0) bottom /100% 51%;
+  background-repeat: no-repeat;
+  animation: f7-0 2s infinite linear .25s;
+}
+.custom-loader2::before{
+  content:"";
+  width:50%;
+  height: 50%;
+  background:currentColor;
+  transform-origin: 10% 10%;
+  animation: f7-1 .5s infinite linear;
+}
+
+
+@keyframes f7-0 {
+  0%   ,12.49% {transform: rotate(0deg)}
+  12.5%,37.49% {transform: rotate(90deg)}
+  37.5%,62.49% {transform: rotate(180deg)}
+  62.5%,87.49% {transform: rotate(270deg)}
+  87.5%,100%   {transform: rotate(360deg)}
+}
+
+@keyframes f7-1 {
+  0%      {transform: perspective(80px) rotate3d(-1,1,0, 0)}
+  80%,100%{transform: perspective(80px) rotate3d(-1,1,0,-360deg)}
+}
+
+
+.custom-loader3 {
+  width:50px;
+  height:calc(50px*0.866);
+  display: grid;
+  background:
+    linear-gradient(to bottom left ,#0000 calc(50% - 1px),#766DF4 0 calc(50% + 1px),#0000 0) right/50% 100%,
+    linear-gradient(to bottom right,#0000 calc(50% - 1px),#766DF4 0 calc(50% + 1px),#0000 0) left /50% 100%,
+    linear-gradient(#766DF4 0 0) bottom/100% 2px;
+  background-repeat: no-repeat;
+  transform-origin: 50% 66%;
+  animation: h5 4s infinite linear;
+}
+
+.custom-loader3::before,
+.custom-loader3::after {
+  content: "";
+  grid-area: 1/1;
+  background:inherit;
+  transform-origin: inherit;
+  animation: inherit;
+}
+.custom-loader3::after {
+  animation-duration: 2s;
+}
+
+@keyframes h5{
+  100% {transform:rotate(1turn)}
+}
+
+
+
+.custom-loader4 {
+  width:120px;
+  height:20px;
+  -webkit-mask:linear-gradient(90deg,#A628F4 70%,#0000 0) left/20% 100%;
+  background:
+   linear-gradient(#A628F4 0 0) left -25% top 0 /20% 100% no-repeat
+   #E4E4ED;
+  animation:ct7 1s infinite steps(6);
+}
+@keyframes ct7 {
+    100% {background-position: right -25% top 0}
+}
+    </style>
+</head>
+<body>
+    <div class="custom-loader"></div><br>
+    <div class="custom-loader2"></div><br>
+    <div class="custom-loader3"></div><br>
+    <div class="custom-loader4"></div>
+</body>
+</html>

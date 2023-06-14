@@ -47,35 +47,7 @@ include 'testasessao.php';
       </li>
     </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
+    
   </nav>
   <!-- /.navbar -->
 
@@ -91,88 +63,50 @@ include 'testasessao.php';
     <div class="sidebar">
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-               <?php
-            if(isset($_GET['adm'])){
-            echo'
             <a href="../home-page.php?adm=S" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
               </p>
-            </a>';
-          }else{
-             echo'
-            <a href="../home-page.php" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
-              <p>
-                Home
-              </p>
-            </a>';
-          }
-            ?>
+            </a>
           </li>
 
           <li class="nav-item">
-            <?php
-            if(isset($_GET['adm'])){
-            echo'
             <a href="../usuarios/users-page.php?adm=S" class="nav-link">
               <i class="nav-icon fa-solid fa-address-book"></i>
               <p>
                 Usuários ADM
               </p>
-            </a>';
-          }else{
-             echo'
-            <a href="../usuarios/users-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-address-book"></i>
-              <p>
-                Usuários ADM
-              </p>
-            </a>';
-          }
-            ?>
+            </a>
           </li>
 
           <li class="nav-item">
-            <?php
-             if(isset($_GET['adm'])){
-              echo
-              '<a href="client-page.php?adm=S" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>
-                  Clientes
-                </p>
-              </a>';
-             }else{
-              echo'
-              <a href="client-page.php" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>
-                  Clientes
-                </p>
-              </a>';
-             }
-            ?>
+            <a href="../clientes/client-page.php?adm=S" class="nav-link active">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Clientes
+              </p>
+            </a>
           </li>
-          <li class="nav-item">
+
+           <li class="nav-item">
             <?php
             if(isset($_GET['adm'])){
             echo'
-            <a href="eventos/event-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
               </p>
             </a>';
           }else{
              echo'
-            <a href="eventos/event-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
               </p>
@@ -181,27 +115,6 @@ include 'testasessao.php';
             ?>
           </li>
 
-          <li class="nav-item">
-            <?php
-            if(isset($_GET['adm'])){
-            echo'
-            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
-              </p>
-            </a>';
-          }else{
-             echo'
-            <a href="ingressos/ticket-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
-              </p>
-            </a>';
-          }
-            ?>
-          </li>
           <li class="nav-item">
             <a href="../sair.php" class="nav-link">
               <i class="nav-icon fas fa-arrow-right-from-bracket"></i>
@@ -228,64 +141,30 @@ include 'testasessao.php';
 
     <!-- Main content -->
     <section class="content">
-    <?php
-        if(isset($_GET['insert'])) {
-          if(($_GET['insert'])== 'ok'){
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                 <strong>Insert</strong> feito com sucesso!
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-            </button>
-          </div>';
-          }
-          if(($_GET['insert'])== 'erro'){
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Atenção</strong> Erro interno no servidor(um cliente com este email já existe, ou outro problema).
-           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-       </button>
-        </div>';
-          }
-          if(($_GET['insert'])== 'Senhaerro'){
-            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Atenção</strong> As senhas estão diferentes!
-           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-       </button>
-        </div>';
-          }
-        }
-      ?>
+    
     <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Criação de Clientes &nbsp; <i class="fa-solid fa-person-circle-plus"></i></h3>
               </div>
               <!-- /.card-header -->
-              <!-- form start -->
-              <form action="salvaclient.php" method="post">
                 <div class="card-body">
-                <?php
-                      if (isset($_GET['adm'])) {
-                        echo '<div class="form-group">
-                                <a href="client-page.php?adm=S" class="btn btn-info">Voltar</a>
-                              </div>';
-                      } else {
-                          echo '<div class="form-group">
-                                  <a href="client-page.php" class="btn btn-info">Voltar</a>
-                                </div>';
-                      }
-                    ?>
                   <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text"  required class="form-control" id="nome" placeholder="Insira o nome" name="nome">
                   </div>
                   <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input type="text" required class="form-control" id="cpf" placeholder="insira o CPF(sem pontos e hifens)" name="cpf">
+                    <input type="text" required class="form-control" id="cpf" placeholder="insira o CPF" name="cpf">
                   </div>
-                  <div class="form-group">
+                  <div class="row">
+                  <div class="form-group col-6">
                     <label for="fone">Fone</label>
                     <input type="text" required class="form-control" id="fone" placeholder="Insira o telefone" name="fone">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="data">Data de Nascimento</label>
+                    <input type="date" required class="form-control" id="data" name="data">
+                  </div>
                   </div>
                   <div class="form-group">
                     <label for="email">E-Mail</label>
@@ -299,26 +178,15 @@ include 'testasessao.php';
                     <label for="senha2">Repetir Senha</label>
                     <input type="password" required class="form-control" id="senha2" placeholder="Repita a senha" name="senha2">
                   </div>
-                  <div class="form-group">
-                    <label for="data">Data de Nascimento</label>
-                    <input type="date" required class="form-control" id="data" name="data">
-                  </div>
-
+      
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                <?php
-            if(isset($_GET['adm'])){
-            echo'
-            <input type="text" hidden class="form-control" id="adm" name="adm" value="adm">';
-          }
-            ?>
-                  <button type="submit" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Criar</button>
+                  <button id="submitcli" class="btn btn-primary"><i class="fa-sharp fa-solid fa-plus"></i> &nbsp;Criar</button>
                 </div>
-              </form>
             </div>
-
+      
     </section>
     <!-- /.content -->
   </div>
@@ -341,6 +209,7 @@ include 'testasessao.php';
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../../jquery.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -369,8 +238,6 @@ include 'testasessao.php';
 <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 
@@ -388,8 +255,114 @@ include 'testasessao.php';
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+<!--mask-->
+<script src="../../mascaras/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+<script src="../../mascaras/jquery.inputmask.js" type="text/javascript"></script>
+<script src="../../mascaras/jquery.inputmask.numeric.extensions.js" type="text/javascript"></script>
 <!-- Page specific script -->
 <script>
+   $(document).ready(function(){ 
+//$("#nasc").inputmask("99/99/9999"); 
+// $("#cep").inputmask("99.999-999"); 
+    $("#cpf").inputmask("999.999.999-99");
+    $("#fone").inputmask("(99)99999-9999");
+ 
+     // Função para validar o CPF
+     function validarCPF(cpf) {
+        cpf = cpf.replace(/[^\d]+/g, '');
+        if (cpf == '') {
+          return false;
+        }
+        // Elimina CPFs invalidos conhecidos
+        if (
+          cpf.length != 11 ||
+          cpf == "00000000000" ||
+          cpf == "11111111111" ||
+          cpf == "22222222222" ||
+          cpf == "33333333333" ||
+          cpf == "44444444444" ||
+          cpf == "55555555555" ||
+          cpf == "66666666666" ||
+          cpf == "77777777777" ||
+          cpf == "88888888888" ||
+          cpf == "99999999999"
+        ) {
+          return false;
+        }
+        // Valida 1o digito
+        var add = 0;
+        for (var i = 0; i < 9; i++) {
+          add += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        var rev = 11 - (add % 11);
+        if (rev == 10 || rev == 11) {
+          rev = 0;
+        }
+        if (rev != parseInt(cpf.charAt(9))) {
+          return false;
+        }
+        // Valida 2o digito
+        add = 0;
+        for (var i = 0; i < 10; i++) {
+          add += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        rev = 11 - (add % 11);
+        if (rev == 10 || rev == 11) {
+          rev = 0;
+        }
+        if (rev != parseInt(cpf.charAt(10))) {
+          return false;
+        }
+        return true;
+      }
+
+      // Função para exibir mensagem de CPF inválido
+      function exibirMensagemCPFInvalido() {
+        $("#cpf").addClass("is-invalid");
+        $("#cpf-feedback").html("CPF inválido");
+      }
+
+      // Evento de validação do CPF ao perder o foco do campo
+      $("#cpf").on("blur", function() {
+        var cpf = $(this).val();
+        if (!validarCPF(cpf)) {
+          exibirMensagemCPFInvalido();
+        } else {
+          $("#cpf").removeClass("is-invalid");
+          $("#cpf-feedback").html("");
+        }
+      });
+
+      // Evento de envio do formulário
+      $("#submitcli").on("click", function(event) {
+                  let nome = $('#nome').val();
+                  let data = $('#data').val();
+                  let cpf = $('#cpf').val();
+                  let fone = $('#fone').val();
+                  let email = $('#email').val();
+                  let senha1 = $('#senha1').val();
+                  let senha2 = $('#senha2').val();
+                  if(senha1!='' && senha2!='' && email!='' && nome!='' && cpf!='' && data!='' && fone!=''){
+                  if(senha1==senha2){
+
+                        $.post("salvaclient.php",{nome:nome,cpf:cpf,fone:fone,data:data,email:email,senha:senha1},function(retcli){
+                            if(retcli!='vazio'){
+                                    swal("Dados Registrados", {  icon: "success",	});
+                                    window.setTimeout('location.reload()',1000);
+                            }else{
+                                    swal("ERRO INTERNO!", {  icon: "error",	});
+                            }
+                        })//fim do post de salvacli
+                  }else{
+                    swal("As Senhas Estão Diferentes", {  icon: "warning",	});
+                  }
+                }else{
+                  swal("1 ou mais campos não preenchidos!", {  icon: "warning",	});
+                }
+      });
+
+//$("#cnpj").mask("99.999.999/9999-99");
+//$("#data").mask("99/99/9999");
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -405,7 +378,10 @@ include 'testasessao.php';
       "responsive": true,
     });
   });
+});    
 </script>
 
+<!-- Core JS -->    
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 </body>
 </html>

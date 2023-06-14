@@ -47,35 +47,7 @@ include 'testasessao.php';
       </li>
     </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
+    
   </nav>
   <!-- /.navbar -->
 
@@ -144,47 +116,27 @@ include 'testasessao.php';
                 </p>
               </a>';
              }
-
+            
             ?>
           </li>
-          <li class="nav-item">
+
+
+           <li class="nav-item">
             <?php
             if(isset($_GET['adm'])){
             echo'
-            <a href="eventos/event-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php?adm=S" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
               </p>
             </a>';
           }else{
              echo'
-            <a href="eventos/event-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-calendar"></i>
+            <a href="../eventos/event-page.php" class="nav-link">
+              <i class="nav-icon fa-solid fa-calendar-days"></i>
               <p>
                 Eventos
-              </p>
-            </a>';
-          }
-            ?>
-          </li>
-
-          <li class="nav-item">
-            <?php
-            if(isset($_GET['adm'])){
-            echo'
-            <a href="ingressos/ticket-page.php?adm=S" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
-              </p>
-            </a>';
-          }else{
-             echo'
-            <a href="ingressos/ticket-page.php" class="nav-link">
-              <i class="nav-icon fa-solid fa-ticket-alt"></i>
-              <p>
-                Ingressos
               </p>
             </a>';
           }
@@ -236,50 +188,8 @@ include 'testasessao.php';
     <section class="content">
       <div class="container-fluid">
         <div class="card">
-
+        
           <!-- /.card-header -->
-          <?php
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'ok'){
-                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>Sucesso</strong> usuário excluido!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-              if(isset($_GET['delete'])) {
-                if(($_GET['delete'])== 'erro'){
-                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Erro usuário não excluido!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-              if(isset($_GET['update'])) {
-                if(($_GET['update'])== 'ok'){
-                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>Sucesso</strong> usuário atualizado!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-              if(isset($_GET['update'])) {
-                if(($_GET['update'])== 'erro'){
-                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <strong>Atenção</strong> Erro usuário não atualizado!
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>';
-                }
-              }
-            ?>
           <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
               <thead>
@@ -289,7 +199,7 @@ include 'testasessao.php';
                 <th>Opções</th>
               </tr>
               </thead>
-              <tbody>
+              <tbody id="tbusu">
               <?php
                   include '../banco/banco.php';
                   $sql = "select * from tbusua";
@@ -303,7 +213,7 @@ include 'testasessao.php';
                                 <td>'.$linha['email'].'</td>
                                 <td>
                                     <a href="altusua.php?id='.$linha['codusu'].'&adm=S" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
-                                    <a href="deleteusu.php?id='.$linha['codusu'].'&adm=S" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
+                                    <button id="'.$linha['codusu'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></button>
                                 </td>
                               </tr>';
                             }
@@ -314,7 +224,7 @@ include 'testasessao.php';
                                 <td>'.$linha['email'].'</td>
                                 <td>
                                     <a href="altusua.php?id='.$linha['codusu'].'" title="Alterar" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i></a>
-                                    <a href="deleteusu.php?id='.$linha['codusu'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></a>
+                                    <button id="'.$linha['codusu'].'" title="Deletar" class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i></button>
                                 </td>
                               </tr>';
                             }
@@ -385,8 +295,6 @@ include 'testasessao.php';
 <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 
@@ -406,6 +314,33 @@ include 'testasessao.php';
 
 <!-- Page specific script -->
 <script>
+  $("#tbusu").on('click','button', function(){
+                     let iddelete = $(this).attr("id");
+                       
+                     swal({
+                                title: "DESEJA DELETAR?",
+                                text: "procedimento para deletar dados!",
+                                icon: "info",
+                                buttons: ["Não", "Sim"],
+                                dangerMode: true,
+                              })//fim swal
+                              .then((willDelete) => {
+                                if (willDelete) {
+                                  $.post('deleteusu.php', {id:iddelete} ,function(retorndelete){
+                                  if(retorndelete != 'vazio'){
+                                    swal("dados deletados", {  icon: "success",	});
+                                    window.setTimeout('location.reload()',1000);
+                                      }else{
+                                        swal("não deletou!",{ icon: "error", });
+                                      }
+                                  });//fim do post do delete conceitos
+                                } else {
+                                swal("não deletou!",{ icon: "error", });
+                                }//fim do if
+                              });//fim do then
+                            });//fim do deleta usu
+
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -423,5 +358,7 @@ include 'testasessao.php';
   });
 </script>
 
+    <!-- Core JS -->    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 </body>
 </html>
